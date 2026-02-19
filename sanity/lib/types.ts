@@ -11,18 +11,22 @@ export interface SanityImageMetadata {
   };
 }
 
-/** Minimal asset reference projected from GROQ. */
-export interface SanityImageAsset {
+/** Asset reference — kept intact (not dereferenced) so urlFor() works. */
+export interface SanityAssetRef {
   _ref: string;
   _type: "reference";
-  metadata: SanityImageMetadata;
 }
 
-/** Shape returned by a GROQ image projection that includes asset metadata. */
+/**
+ * Shape returned by the GROQ image projection.
+ * `asset` is the raw reference (for urlFor()),
+ * `metadata` is pulled from the dereferenced asset as a sibling field.
+ */
 export interface SanityImageField {
   _type: "image";
   _key?: string;
-  asset: SanityImageAsset;
+  asset: SanityAssetRef;
+  metadata: SanityImageMetadata;
   hotspot?: { x: number; y: number; height: number; width: number };
   crop?: { top: number; bottom: number; left: number; right: number };
 }

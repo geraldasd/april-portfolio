@@ -3,14 +3,13 @@ import { client } from "./client";
 import type { Information, ProjectCard, ProjectDetail } from "./types";
 
 // ── Reusable GROQ fragment for image fields with LQIP ──────
+// Keep `asset` as-is (preserves _ref for urlFor()) and pull
+// metadata from the dereferenced asset document as a sibling.
 const imageProjection = `{
   _type,
   _key,
-  asset->{
-    _ref,
-    _type,
-    metadata { lqip, dimensions }
-  },
+  asset,
+  "metadata": asset->metadata { lqip, dimensions },
   hotspot,
   crop
 }`;
