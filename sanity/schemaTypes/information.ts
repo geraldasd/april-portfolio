@@ -20,6 +20,6 @@ export const information = defineType({
       validation: (rule) => rule.required().email(),
     }),
   ],
-  // Prevent creating multiple information documents
-  __experimental_actions: [/* "create", */ "update", "delete", "publish"],
+  // Singleton behavior is enforced via the custom structure (sanity/structure.ts):
+  // the document is always opened by a fixed ID "information" with no "create new" option.
 });
