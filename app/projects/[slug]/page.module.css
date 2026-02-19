@@ -1,0 +1,33 @@
+.projectPage {
+  margin-top: 80px;
+}
+
+.projectHeader {
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.meta {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.galleryImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

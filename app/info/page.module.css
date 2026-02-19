@@ -1,0 +1,26 @@
+.infoPage {
+  margin-top: 80px;
+}
+
+.content {
+  text-align: left;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.email {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.email a {
+  text-decoration: underline;
+}
+
+.email a:hover {
+  opacity: 0.6;
+}

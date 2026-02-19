@@ -1,0 +1,19 @@
+.header {
+  margin-top: 10px;
+}
+
+.logo {
+  text-align: left;
+}
+
+.logo a:hover {
+  opacity: 0.6;
+}
+
+.info {
+  text-align: right;
+}
+
+.info a:hover {
+  opacity: 0.6;
+}

@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --margin: 10px;
+  --gutter: 10px;
+  --columns: 4;
+  --top-offset: 200px;
+  --row-gap: 120px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: var(--font-spectral), "Spectral", serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: right;
+  color: #000;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Page wrapper enforcing side margins */
+.page-wrapper {
+  padding-left: var(--margin);
+  padding-right: var(--margin);
+}
+
+/* 4-column grid */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: 0 var(--gutter);
+}
+
+/* Header */
+.site-header {
+  margin-top: var(--margin);
+}
+
+.site-header .logo a {
+  text-align: left;
+}
+
+.site-header .info-link {
+  grid-column: 4;
+  text-align: right;
+}
