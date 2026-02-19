@@ -6,12 +6,9 @@ const nextConfig: NextConfig = {
     styledComponents: true,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-    ],
+    // Sanity CDN handles format conversion, resizing & quality via the
+    // custom loader — disable Next.js's built-in image optimiser entirely.
+    unoptimized: true,
   },
   // Allow Sanity Studio to work in an iframe
   async headers() {

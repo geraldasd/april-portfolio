@@ -1,18 +1,16 @@
 import { notFound } from "next/navigation";
-import { getProjectBySlug, getProjects } from "../../../../sanity/lib/queries";
-import { urlFor } from "../../../../sanity/lib/image";
+import { getProjectBySlug, getProjectSlugs } from "../../../../sanity/lib/queries";
+import SanityImage from "../../../components/SanityImage";
 import styles from "./page.module.css";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export const revalidate = 60;
+export const revalidate = 10;
 
-// Generate static paths for all projects
 export async function generateStaticParams() {
-  const projects = await getProjects();
-  return (projects ?? []).map((p: { slug: string }) => ({ slug: p.slug }));
+  return getProjectSlugs();
 }
 
 export default async function ProjectPage({ params }: Props) {
@@ -35,13 +33,17 @@ export default async function ProjectPage({ params }: Props) {
       </header>
 
       <div className={styles.gallery}>
-        {project.images?.map((image: any, i: number) => (
+        {project.images?.map((image, i) => (
           <div key={image._key ?? i} className={styles.galleryImage}>
-            <img
-              src={urlFor(image).width(1600).auto("format").url()}
-              alt={`${project.projectName} — image ${i + 1}`}
-              loading="lazy"
-            />
+            {image.asset ? (
+              <SanityImage
+                image={image}
+                alt={`${project.projectName} — image ${i + 1}`}
+                sizes="(max-width: 768px) 100vw, 80vw"
+                className={styles.galleryImg}
+                loading="lazy"
+              />
+            ) : null}
           </div>
         ))}
       </div>

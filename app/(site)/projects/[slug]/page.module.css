@@ -1,5 +1,5 @@
 .projectPage {
-  margin-top: 80px;
+  padding-top: 150px;
 }
 
 .projectHeader {
@@ -26,7 +26,11 @@
   gap: 20px;
 }
 
-.galleryImage img {
+.galleryImage {
+  width: 100%;
+}
+
+.galleryImg {
   width: 100%;
   height: auto;
   display: block;
