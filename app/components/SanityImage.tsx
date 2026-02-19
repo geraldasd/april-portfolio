@@ -23,18 +23,24 @@ export interface SanityImageProps extends NextImageProps {
  *  1. Pre-computes the Sanity CDN URL on the server (auto=format, sized).
  *  2. Applies LQIP blur-up placeholder automatically.
  *
- * No loader function needed — `images.unoptimized: true` in next.config
- * means Next.js passes the `src` string through unchanged.
+ * Handles both `fill` mode (no width/height) and intrinsic mode
+ * (width/height from Sanity metadata) automatically.
  */
 export default function SanityImage({
   image,
   alt,
   requestWidth,
+  fill,
   ...rest
 }: SanityImageProps) {
-  const { lqip, dimensions } = image.metadata;
+  // Guard: if metadata is missing, fall back to a basic <img>
+  if (!image.metadata?.dimensions) {
+    const fallbackSrc = urlFor(image).width(800).auto("format").url();
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={fallbackSrc} alt={alt} {...(rest as Record<string, unknown>)} />;
+  }
 
-  // Cap request width to something sensible
+  const { lqip, dimensions } = image.metadata;
   const w = requestWidth ?? Math.min(dimensions.width, 1600);
 
   const src = urlFor(image)
@@ -43,14 +49,19 @@ export default function SanityImage({
     .auto("format")
     .url();
 
+  // When `fill` is used, next/image forbids width/height.
+  // When `fill` is NOT used, we supply intrinsic dimensions.
+  const sizeProps = fill
+    ? { fill: true as const }
+    : { width: dimensions.width, height: dimensions.height };
+
   return (
     <Image
       src={src}
       alt={alt}
-      placeholder="blur"
-      blurDataURL={lqip}
-      width={dimensions.width}
-      height={dimensions.height}
+      placeholder={lqip ? "blur" : "empty"}
+      blurDataURL={lqip || undefined}
+      {...sizeProps}
       {...rest}
     />
   );
