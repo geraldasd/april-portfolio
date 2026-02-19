@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Required for styled-components (used by Sanity UI) to work with React 19
+  compiler: {
+    styledComponents: true,
+  },
+  // Transpile Sanity packages so they work correctly in the App Router SSR
+  transpilePackages: ['sanity', '@sanity/ui', '@sanity/vision', 'styled-components', 'sanity-plugin-media'],
   images: {
     remotePatterns: [
       {
