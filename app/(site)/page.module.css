@@ -48,12 +48,6 @@
   line-height: 1;
   white-space: nowrap;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.cardLink:hover .projectName {
-  opacity: 1;
 }
 
 /* ── Cover image — 3:4 aspect ratio ───────────────────────── */

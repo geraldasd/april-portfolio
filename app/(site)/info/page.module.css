@@ -1,15 +1,17 @@
 .infoPage {
-  margin-top: 80px;
+  padding-top: 150px;
 }
 
 .content {
   text-align: left;
 }
 
-.name {
+.description {
   font-size: 13px;
   font-weight: 700;
-  margin-bottom: 8px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  white-space: pre-line;
 }
 
 .email {
@@ -18,7 +20,7 @@
 }
 
 .email a {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .email a:hover {

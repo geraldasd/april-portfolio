@@ -57,7 +57,7 @@ a {
 
 .site-header .col-name {
   grid-column: 1;
-  text-align: left;
+  text-align: right;
 }
 
 .site-header .col-info {

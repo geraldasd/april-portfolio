@@ -19,6 +19,13 @@ export const information = defineType({
       description: "Displayed on the Info page.",
       validation: (rule) => rule.required().email(),
     }),
+    defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+      description: "Short bio or title shown on the Info page (e.g. 'Student of Architecture').",
+      rows: 3,
+    }),
   ],
   // Singleton behavior is enforced via the custom structure (sanity/structure.ts):
   // the document is always opened by a fixed ID "information" with no "create new" option.

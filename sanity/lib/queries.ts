@@ -6,7 +6,8 @@ export async function getInformation() {
   return client.fetch(
     groq`*[_type == "information"][0]{
       name,
-      email
+      email,
+      description
     }`
   );
 }
