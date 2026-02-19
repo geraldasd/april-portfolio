@@ -18,7 +18,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "3",
-    "sanity-plugin-media": "^2.0.0"
+    "sanity-plugin-media": "^2.0.0",
+    "styled-components": "^6.3.10"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
@@ -31,6 +32,10 @@
     "typescript": "^5.0.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["sharp", "@next/swc-win32-x64-msvc", "esbuild"]
+    "onlyBuiltDependencies": [
+      "sharp",
+      "@next/swc-win32-x64-msvc",
+      "esbuild"
+    ]
   }
 }

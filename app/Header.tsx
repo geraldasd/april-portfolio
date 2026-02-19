@@ -1,20 +1,19 @@
 import Link from "next/link";
 import { getInformation } from "../sanity/lib/queries";
-import styles from "./Header.module.css";
 
 export default async function Header() {
   const info = await getInformation();
   const name = info?.name ?? "April Li";
 
   return (
-    <header className={`${styles.header} grid-4`}>
-      <div className={styles.logo}>
+    <header className="site-header">
+      <div className="col-name">
         <Link href="/">{name}</Link>
       </div>
-      {/* Empty columns 2 & 3 */}
+      {/* columns 2 & 3 — empty */}
       <div />
       <div />
-      <div className={styles.info}>
+      <div className="col-info">
         <Link href="/info">Info</Link>
       </div>
     </header>

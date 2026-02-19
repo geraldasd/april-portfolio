@@ -23,9 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={spectral.variable}>
       <body>
+        {/*
+          .page-wrapper: position:relative + 10px side padding.
+          .site-header inside is position:absolute so it doesn't
+          push any content down — main's padding-top:200px sets
+          the exact distance from page top to the first image row.
+        */}
         <div className="page-wrapper">
           <Header />
-          <main>{children}</main>
+          <main style={{ paddingTop: "200px" }}>{children}</main>
         </div>
       </body>
     </html>
