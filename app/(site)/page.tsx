@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getProjects } from "../sanity/lib/queries";
-import { urlFor } from "../sanity/lib/image";
+import { getProjects } from "../../sanity/lib/queries";
+import { urlFor } from "../../sanity/lib/image";
 import styles from "./page.module.css";
 
 interface Project {

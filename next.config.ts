@@ -5,8 +5,6 @@ const nextConfig: NextConfig = {
   compiler: {
     styledComponents: true,
   },
-  // Transpile Sanity packages so they work correctly in the App Router SSR
-  transpilePackages: ['sanity', '@sanity/ui', '@sanity/vision', 'styled-components', 'sanity-plugin-media'],
   images: {
     remotePatterns: [
       {

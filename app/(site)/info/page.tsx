@@ -1,4 +1,4 @@
-import { getInformation } from "../../sanity/lib/queries";
+import { getInformation } from "../../../sanity/lib/queries";
 import styles from "./page.module.css";
 
 export const revalidate = 60;

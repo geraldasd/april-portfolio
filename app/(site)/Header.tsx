@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getInformation } from "../sanity/lib/queries";
+import { getInformation } from "../../sanity/lib/queries";
 
 export default async function Header() {
   const info = await getInformation();

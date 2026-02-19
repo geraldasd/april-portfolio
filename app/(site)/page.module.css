@@ -13,6 +13,7 @@
   grid-template-columns: repeat(4, 1fr);
   column-gap: 10px;
   row-gap: 120px;
+  padding-top: 200px;
 }
 
 /* ── Card ──────────────────────────────────────────────────── */

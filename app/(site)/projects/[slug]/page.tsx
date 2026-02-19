@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { getProjectBySlug, getProjects } from "../../../sanity/lib/queries";
-import { urlFor } from "../../../sanity/lib/image";
+import { getProjectBySlug, getProjects } from "../../../../sanity/lib/queries";
+import { urlFor } from "../../../../sanity/lib/image";
 import styles from "./page.module.css";
 
 interface Props {
