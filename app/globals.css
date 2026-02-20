@@ -57,12 +57,12 @@ a {
 
 .site-header .col-name {
   grid-column: 1;
-  text-align: right;
+  text-align: left;
 }
 
 .site-header .col-info {
   grid-column: 4;
-  text-align: right;
+  text-align: left;
 }
 
 .site-header a:hover {
