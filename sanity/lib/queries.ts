@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 import { client } from "./client";
-import type { Information, ProjectCard, ProjectDetail } from "./types";
+import type { Information, ProjectCard, ProjectDetail, SiteSettings } from "./types";
 
 // ── Reusable GROQ fragment for image fields with LQIP ──────
 // Keep `asset` as-is (preserves _ref for urlFor()) and pull
@@ -60,5 +60,19 @@ export async function getProjectBySlug(
 export async function getProjectSlugs(): Promise<{ slug: string }[]> {
   return client.fetch(
     groq`*[_type == "project"]{ "slug": slug.current }`
+  );
+}
+
+// ── SEO settings (singleton) ────────────────────────────────
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  return client.fetch(
+    groq`*[_type == "siteSettings"][0]{
+      seoTitle,
+      seoDescription,
+      ogTitle,
+      ogDescription,
+      "ogImageUrl": ogImage.asset->url,
+      siteUrl
+    }`
   );
 }

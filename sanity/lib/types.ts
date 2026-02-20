@@ -55,3 +55,13 @@ export interface Information {
   email: string;
   description?: string;
 }
+
+/** SEO / Social sharing settings singleton. */
+export interface SiteSettings {
+  seoTitle?: string;
+  seoDescription?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImageUrl?: string;
+  siteUrl?: string;
+}

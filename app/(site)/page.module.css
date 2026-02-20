@@ -78,3 +78,22 @@
   opacity: 0.9;
 }
 
+/* ── Mobile ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .projectGrid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 50px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+
+  .projectName {
+    opacity: 1;
+  }
+
+  .cardLink:hover .projectName {
+    opacity: 1;
+  }
+}
+
