@@ -42,7 +42,7 @@ export default function ProjectViewer({ project, siteName }: Props) {
   const total = images.length
   const [currentIndex, setCurrentIndex] = useState(0)
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
-  const [showCursor, setShowCursor] = useState(false)
+  const [showCursor, setShowCursor] = useState(true)
   const [headerHovered, setHeaderHovered] = useState(false)
   const preloadedRef = useRef<Set<number>>(new Set())
   const netRef = useRef(getNetworkQuality())
@@ -182,7 +182,7 @@ export default function ProjectViewer({ project, siteName }: Props) {
       {showCursor && !headerHovered && total > 0 && (
         <div
           className={styles.cursorFollower}
-          style={{ left: cursorPos.x, top: cursorPos.y + 20 }}
+          style={{ left: cursorPos.x, top: cursorPos.y + 30 }}
         >
           {currentIndex + 1}/{total}
         </div>
