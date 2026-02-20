@@ -1,0 +1,99 @@
+/* ═══════════════════════════════════════════════════════════
+   Project Viewer — full-viewport, single-image slideshow
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Viewport wrapper ─────────────────────────────────────── */
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* ── Header zone — sits on top, same grid as site header ──── */
+.headerZone {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 110;
+}
+
+.headerRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 10px;
+}
+
+.headerRowAlt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headerCol {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.headerCol a:hover {
+  opacity: 0.5;
+}
+
+/* ── X close button — always visible, far right ──────────── */
+.closeButton {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 120;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  color: inherit;
+  line-height: 1;
+  padding: 0;
+}
+
+.closeButton:hover {
+  opacity: 0.5;
+}
+
+/* ── Image area — centred, 100px inset top & bottom ──────── */
+.imageArea {
+  position: absolute;
+  top: 100px;
+  bottom: 100px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+}
+
+.mainImage {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Cursor follower ─────────────────────────────────────── */
+.cursorFollower {
+  position: fixed;
+  pointer-events: none;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  line-height: 1;
+  z-index: 200;
+  white-space: nowrap;
+}
