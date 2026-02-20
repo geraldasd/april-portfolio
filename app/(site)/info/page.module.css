@@ -26,3 +26,9 @@
 .email a:hover {
   opacity: 0.6;
 }
+
+@media (max-width: 768px) {
+  .infoPage {
+    padding-top: 100px;
+  }
+}

@@ -84,6 +84,8 @@
   max-width: 100%;
   object-fit: contain;
   display: block;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* ── Cursor follower ─────────────────────────────────────── */
@@ -96,4 +98,78 @@
   line-height: 1;
   z-index: 200;
   white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Mobile header & footer
+   ═══════════════════════════════════════════════════════════ */
+
+.mobileHeader {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 110;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mobileHeaderName {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.mobileCloseBtn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  color: inherit;
+  line-height: 1;
+  padding: 0;
+}
+
+.mobileFooter {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 110;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.mobileCounter {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.mobileGalleryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mobileGalleryBtn:hover {
+  opacity: 0.5;
+}
+
+/* ── Mobile image area override ──────────────────────────── */
+@media (max-width: 768px) {
+  .imageArea {
+    top: 50px;
+    bottom: 50px;
+    left: 10px;
+    right: 10px;
+  }
 }
