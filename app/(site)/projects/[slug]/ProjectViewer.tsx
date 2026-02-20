@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import type { ProjectDetail, SanityImageField } from '../../../../sanity/lib/types'
@@ -12,6 +12,30 @@ interface Props {
   siteName: string
 }
 
+/* ── Network-aware image quality ─────────────────────────── */
+function getNetworkQuality(): { width: number; quality: number } {
+  if (typeof navigator === 'undefined') return { width: 1600, quality: 80 }
+  const conn = (navigator as Navigator & { connection?: { effectiveType?: string; saveData?: boolean } }).connection
+  if (!conn) return { width: 1600, quality: 80 }
+  if (conn.saveData) return { width: 800, quality: 50 }
+  switch (conn.effectiveType) {
+    case 'slow-2g':
+    case '2g':
+      return { width: 800, quality: 50 }
+    case '3g':
+      return { width: 1200, quality: 65 }
+    default:
+      return { width: 1600, quality: 80 }
+  }
+}
+
+function getImageUrl(image: SanityImageField, netWidth?: number, netQuality?: number) {
+  if (!image?.asset) return ''
+  const w = netWidth ?? 1600
+  const q = netQuality ?? 80
+  return urlFor(image).width(w).quality(q).auto('format').url()
+}
+
 export default function ProjectViewer({ project, siteName }: Props) {
   const router = useRouter()
   const images = project.images ?? []
@@ -20,6 +44,8 @@ export default function ProjectViewer({ project, siteName }: Props) {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
   const [showCursor, setShowCursor] = useState(false)
   const [headerHovered, setHeaderHovered] = useState(false)
+  const preloadedRef = useRef<Set<number>>(new Set())
+  const netRef = useRef(getNetworkQuality())
 
   /* Lock body scroll while viewer is mounted */
   useEffect(() => {
@@ -29,6 +55,42 @@ export default function ProjectViewer({ project, siteName }: Props) {
       document.body.style.overflow = prev
     }
   }, [])
+
+  /* Sync scrollbar width as CSS variable so headers align with home page */
+  useEffect(() => {
+    const scrollbarW = window.innerWidth - document.documentElement.clientWidth
+    document.documentElement.style.setProperty('--scrollbar-w', `${scrollbarW}px`)
+    return () => {
+      document.documentElement.style.removeProperty('--scrollbar-w')
+    }
+  }, [])
+
+  /* ── Preload adjacent images ────────────────────────────── */
+  useEffect(() => {
+    const { width, quality } = netRef.current
+    const toPreload: number[] = []
+
+    // Preload 2 ahead and 1 behind (adapt range to network)
+    const ahead = quality >= 65 ? 2 : 1
+    for (let offset = -1; offset <= ahead; offset++) {
+      const idx = currentIndex + offset
+      if (idx >= 0 && idx < total && idx !== currentIndex && !preloadedRef.current.has(idx)) {
+        toPreload.push(idx)
+      }
+    }
+
+    toPreload.forEach((idx) => {
+      const img = images[idx]
+      if (img?.asset) {
+        const link = document.createElement('link')
+        link.rel = 'preload'
+        link.as = 'image'
+        link.href = getImageUrl(img, width, quality)
+        document.head.appendChild(link)
+        preloadedRef.current.add(idx)
+      }
+    })
+  }, [currentIndex, images, total])
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     setCursorPos({ x: e.clientX, y: e.clientY })
@@ -46,11 +108,7 @@ export default function ProjectViewer({ project, siteName }: Props) {
     [total]
   )
 
-  const getImageUrl = (image: SanityImageField) => {
-    if (!image?.asset) return ''
-    return urlFor(image).width(1600).quality(80).auto('format').url()
-  }
-
+  const { width: netW, quality: netQ } = netRef.current
   const currentImage = images[currentIndex]
 
   return (
@@ -113,7 +171,7 @@ export default function ProjectViewer({ project, siteName }: Props) {
         {currentImage?.asset && (
           <img
             key={currentIndex}
-            src={getImageUrl(currentImage)}
+            src={getImageUrl(currentImage, netW, netQ)}
             alt={`${project.projectName} — ${currentIndex + 1} of ${total}`}
             className={styles.mainImage}
           />

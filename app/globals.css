@@ -20,6 +20,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Thin scrollbar ───────────────────────────────────────── */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
 a {
   color: inherit;
   text-decoration: none;
