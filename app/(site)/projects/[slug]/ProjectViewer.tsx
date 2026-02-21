@@ -248,6 +248,7 @@ export default function ProjectViewer({ project, siteName, initialIndex = 0 }: P
       <div
         className={styles.imageArea}
         onClick={!isMobile ? handleClick : undefined}
+        onContextMenu={(e) => e.preventDefault()}
         onTouchStart={isMobile ? handleTouchStart : undefined}
         onTouchEnd={isMobile ? handleTouchEnd : undefined}
       >

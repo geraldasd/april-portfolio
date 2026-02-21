@@ -9,6 +9,8 @@
   z-index: 100;
   background: #fff;
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* ── Header zone — sits on top, same grid as site header ──── */
