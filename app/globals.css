@@ -73,7 +73,6 @@ a {
   left: 0;
   right: 0;
   padding: 10px 10px 6px;
-  background: #fff;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0 10px;
