@@ -115,9 +115,9 @@ export default function ProjectViewer({ project, siteName, initialIndex = 0 }: P
       if (isMobile) return
       const half = window.innerWidth / 2
       if (e.clientX >= half) {
-        setCurrentIndex((i) => Math.min(i + 1, total - 1))
+        setCurrentIndex((i) => (i + 1) % total)
       } else {
-        setCurrentIndex((i) => Math.max(i - 1, 0))
+        setCurrentIndex((i) => (i - 1 + total) % total)
       }
     },
     [total, isMobile]
@@ -142,9 +142,9 @@ export default function ProjectViewer({ project, siteName, initialIndex = 0 }: P
       // Horizontal swipe: must be >50px and more horizontal than vertical
       if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > deltaY) {
         if (deltaX < 0) {
-          setCurrentIndex((i) => Math.min(i + 1, total - 1))
+          setCurrentIndex((i) => (i + 1) % total)
         } else {
-          setCurrentIndex((i) => Math.max(i - 1, 0))
+          setCurrentIndex((i) => (i - 1 + total) % total)
         }
       } else {
         // Tap — left half = prev, right half = next
@@ -153,9 +153,9 @@ export default function ProjectViewer({ project, siteName, initialIndex = 0 }: P
         if (tapDeltaX < 20 && tapDeltaY < 20) {
           const half = window.innerWidth / 2
           if (touch.clientX >= half) {
-            setCurrentIndex((i) => Math.min(i + 1, total - 1))
+            setCurrentIndex((i) => (i + 1) % total)
           } else {
-            setCurrentIndex((i) => Math.max(i - 1, 0))
+            setCurrentIndex((i) => (i - 1 + total) % total)
           }
         }
       }
