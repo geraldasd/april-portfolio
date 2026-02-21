@@ -6,7 +6,7 @@
   position: relative;
   z-index: 100;
   min-height: 100vh;
-  padding: 100px 10px 80px;
+  padding: 100px 0px 80px;
   background: #fff;
   overflow-x: hidden;
 }
