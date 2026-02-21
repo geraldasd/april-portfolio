@@ -37,7 +37,7 @@ export default async function GalleryPage({ params }: Props) {
       <div className={styles.galleryHeader}>
         <span className={styles.galleryName}>{project.projectName}</span>
         <Link href="/" className={styles.galleryClose} aria-label="Close">
-          X
+          <svg width="13" height="13" viewBox="0 0 13 13" stroke="currentColor" strokeWidth="1.5" fill="none"><line x1="0" y1="0" x2="13" y2="13" /><line x1="13" y1="0" x2="0" y2="13" /></svg>
         </Link>
       </div>
 

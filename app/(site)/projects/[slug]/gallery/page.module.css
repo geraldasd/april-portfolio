@@ -8,6 +8,7 @@
   min-height: 100vh;
   padding: 100px 10px 80px;
   background: #fff;
+  overflow-x: hidden;
 }
 
 /* ── Header: project name + X ────────────────────────────── */
@@ -47,7 +48,7 @@
 .galleryGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 10px;
+  gap: 10px;
   row-gap: 50px;
 }
 

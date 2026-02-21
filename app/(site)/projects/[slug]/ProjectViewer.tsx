@@ -225,7 +225,7 @@ export default function ProjectViewer({ project, siteName, initialIndex = 0 }: P
             onClick={() => router.push('/')}
             aria-label="Close project"
           >
-            X
+            <svg width="13" height="13" viewBox="0 0 13 13" stroke="currentColor" strokeWidth="1.5" fill="none"><line x1="0" y1="0" x2="13" y2="13" /><line x1="13" y1="0" x2="0" y2="13" /></svg>
           </button>
         </>
       )}
@@ -239,7 +239,7 @@ export default function ProjectViewer({ project, siteName, initialIndex = 0 }: P
             onClick={() => router.push('/')}
             aria-label="Close project"
           >
-            X
+            <svg width="13" height="13" viewBox="0 0 13 13" stroke="currentColor" strokeWidth="1.5" fill="none"><line x1="0" y1="0" x2="13" y2="13" /><line x1="13" y1="0" x2="0" y2="13" /></svg>
           </button>
         </div>
       )}
